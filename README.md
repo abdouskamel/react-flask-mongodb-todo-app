@@ -1,2 +1,2 @@
-# React-Flask-MongoDB Boilerplate
+# React-Flask-MongoDB Todo App
 
