@@ -1,7 +1,7 @@
 import {useState} from "react"
 
 function InputTodoItem({onAddTodoItem}) {
-    const [todoItem, setTodoItem] = useState("");
+    const [itemContent, setItemContent] = useState("");
 
     return (
         <div className="input-wrapper">
@@ -9,17 +9,17 @@ function InputTodoItem({onAddTodoItem}) {
                 type="text"
                 name="todoItem"
                 placeholder="Create a new todo item"
-                value={todoItem}
+                value={itemContent}
                 onChange={(e) => {
-                    setTodoItem(e.target.value)
+                    setItemContent(e.target.value)
                 }}
             />
 
             <button 
                 className="add-button" 
                 onClick={(e) => {
-                    onAddTodoItem(todoItem);
-                    setTodoItem("");
+                    onAddTodoItem(itemContent);
+                    setItemContent("");
             }}>Add</button>
         </div>
     )

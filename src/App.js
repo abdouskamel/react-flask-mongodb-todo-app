@@ -21,24 +21,26 @@ function App() {
     }, []);
 
     // Add a todo item to the list and to the database
-    const addTodoItem = (todoItem) => {
-        if (todoItem !== "") {
-            axios.post(`${configData.API_URI}/add_todo_item`, {item: todoItem})
+    const addTodoItem = (itemContent) => {
+        if (itemContent !== "") {
+            axios.post(`${configData.API_URI}/add_todo_item`, {item_content: itemContent})
                 .then((response) => {
                     if (response.status === 200) {
-                        setTodoList([...todoList, todoItem]);
+                        setTodoList([...todoList, {"id": response.data.item_id, "content": itemContent}]);
                     }
                 });
         }
     };
 
-    // delete a todo item for the list and from the database
-    const deleteTodoItem = (todoItemIndex) => {
-        axios.post(`${configData.API_URI}/delete_todo_item`, {index: todoItemIndex})
+    // delete a todo item from the list and from the database
+    const deleteTodoItem = (itemId) => {
+        axios.post(`${configData.API_URI}/delete_todo_item`, {item_id: itemId})
             .then((response) => {
                 if (response.status === 200) {
-                    const newTodoList = [...todoList];
-                    newTodoList.splice(todoItemIndex, 1);
+                    const newTodoList = todoList.filter((item) => {
+                        return item.id !== itemId
+                    });
+
                     setTodoList(newTodoList);
                 }
             });

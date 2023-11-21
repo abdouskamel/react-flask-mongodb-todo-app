@@ -3,12 +3,12 @@ function DisplayTodoList({todoList, onDeleteTodoItem}) {
         return (
             <ul className="todo-list">
                 {todoList.map((item, index) => (
-                    <div className="todo-item-wrapper" key={index}>
-                        <li>{item}</li>
+                    <div className="todo-item-wrapper" key={item.id}>
+                        <li>{item.content}</li>
                         <button 
                             className="delete-button" 
                             onClick={(e) => {
-                                onDeleteTodoItem(index);
+                                onDeleteTodoItem(item.id);
                         }}>Delete</button>
                     </div>
                 ))}
